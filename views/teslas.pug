@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  - var results = ['Model X 2015 $45,000','Model Y 2017 $55,000','Model 3 2020 $68,000']
+  div(class='container-fluid')
+    div(class='row')
+  each item in results
+    div(class='col-sm-2') #{item}
+  
+
