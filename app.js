@@ -12,7 +12,7 @@ const { default: mongoose } = require('mongoose');
 //var mydataRouter = require('./routes/mydata');
 var teslasRouter = require('./routes/teslas');
 //var modRouter = require('./routes/addmods');
-//var selRouter = require('./routes/selector');
+var selRouter = require('./routes/selector');
 var resourceRouter = require('./routes/resource');
 
 const connectionString = process.env.MONGO_CON
@@ -51,7 +51,7 @@ app.use(express.json());
 //app.use('/mydata', mydataRouter);
 app.use('/teslas', teslasRouter);
 //app.use('/addmods', modRouter);
-//app.use('/selector', selRouter);
+app.use('/selector', selRouter);
 app.use('/resource', resourceRouter);
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

@@ -1,9 +1,7 @@
 var express = require('express');
+const tesla_controllers=require('../controllers/controller')
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('teslas', { title: 'Search Results' });
-});
-
+router.get('/', tesla_controllers.tesla_view_all_Page);
 module.exports = router;
