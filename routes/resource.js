@@ -3,7 +3,7 @@ var router = express.Router();
  
 // Require controller modules. 
 var api_controller = require('../controllers/api'); 
-var tesla_controller = require('../controllers/controller'); 
+var tesla_controller = require('../controllers/teslaControl'); 
  
 /// API ROUTE /// 
  
@@ -19,8 +19,7 @@ router.post('/resource/tesla', tesla_controller.tesla_create_post);
 router.delete('/resource/tesla/:id', tesla_controller.tesla_delete); 
  
 // PUT request to update Costume. 
-router.put('/resource/tesla/:id', 
-tesla_controller.tesla_update_put); 
+router.put('/resource/tesla/:id', tesla_controller.tesla_update_put); 
  
 // GET request for one Costume. 
 router.get('/resource/tesla/:id', tesla_controller.tesla_detail); 

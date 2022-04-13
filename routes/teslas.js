@@ -1,5 +1,5 @@
 var express = require('express');
-const tesla_controllers=require('../controllers/controller')
+const tesla_controllers = require('../controllers/teslaControl')
 var router = express.Router();
 
 /* GET home page. */

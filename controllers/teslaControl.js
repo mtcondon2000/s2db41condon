@@ -20,8 +20,8 @@ exports.tesla_create_post = async function(req,res) {
     let document = new Tesla();
 
     document.tesla_type = req.body.tesla_type; 
-    document.cost = req.body.cost; 
-    document.size = req.body.size; 
+    document.cost = req.body.year; 
+    document.size = req.body.cost; 
     try{ 
         let result = await document.save(); 
         res.send(result); 
