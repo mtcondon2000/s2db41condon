@@ -52,7 +52,7 @@ var usersRouter = require('./routes/users');
 var teslasRouter = require('./routes/teslas');
 //var modRouter = require('./routes/addmods');
 var selRouter = require('./routes/selector');
-var resRouter = require('./routes/TeslaResource');
+var resRouter = require('./routes/resource');
 
 var app = express();
 
