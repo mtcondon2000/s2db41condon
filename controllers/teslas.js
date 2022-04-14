@@ -24,7 +24,7 @@ exports.tesla_detail = async function(req, res) {
 }; 
  
 // Handle Costume create on POST. 
-exports.tesla_create_post = function(req, res) { 
+exports.tesla_create_post = async function(req, res) { 
     console.log(req.body) 
     let document = new Tesla();
     document.tesla_type = req.body.tesla_type; 
@@ -47,8 +47,24 @@ exports.tesla_delete = function(req, res) {
 }; 
  
 // Handle Costume update form on PUT. 
-exports.tesla_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Costume update PUT' + req.params.id); 
+exports.tesla_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+    ${JSON.stringify(req.body)}`) 
+        try { 
+            let toUpdate = await Tesla.findById( req.params.id) 
+            // Do updates of properties 
+            if(req.body.tesla_type)  
+                   toUpdate.tesla_type = req.body.tesla_type; 
+            if(req.body.cost) toUpdate.year = req.body.year; 
+            if(req.body.size) toUpdate.cost = req.body.cost; 
+            let result = await toUpdate.save(); 
+            console.log("Sucess " + result) 
+            res.send(result) 
+        } catch (err) { 
+            res.status(500) 
+            res.send(`{"error": ${err}: Update for id ${req.params.id} 
+    failed`); 
+        } 
 }; 
 
 exports.tesla_view_all_Page = async function(req, res) { 
