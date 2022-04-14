@@ -12,7 +12,7 @@ exports.tesla_list = async function(req, res) {
     }   }; 
  
 // for a specific Costume. 
-exports.tesla_detail = function(req, res) { 
+exports.tesla_detail = async function(req, res) { 
     console.log("detail"  + req.params.id) 
     try { 
         result = await Tesla.findById( req.params.id) 
