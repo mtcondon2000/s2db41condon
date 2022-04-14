@@ -17,7 +17,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once("open", function(){ 
   console.log("Connection to DB succeeded")}); 
 
-  var Tesla = require("./models/teslaSchema"); 
+  var Tesla = require("./models/tesla"); 
 
 // We can seed the collection if needed on server start
 async function recreateDB(){ 
@@ -30,8 +30,19 @@ Tesla({tesla_type:"Model X",  year:'2015', cost: 55000});
       if(err) return console.error(err); 
       console.log("First object saved") 
   }); 
+  let instance2 = new 
+Tesla({tesla_type:"Model Y",  year:'2017', cost: 60000}); 
+  instance2.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("Second object saved") 
+  });
+  let instance3 = new 
+Tesla({tesla_type:"Model 3",  year:'2019', cost: 68000}); 
+  instance3.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("Third object saved") 
+  });
 } 
- 
 let reseed = true; 
 if (reseed) { recreateDB();} 
 
@@ -41,7 +52,7 @@ var usersRouter = require('./routes/users');
 var teslasRouter = require('./routes/teslas');
 //var modRouter = require('./routes/addmods');
 var selRouter = require('./routes/selector');
-var resRouter = require('./routes/resource');
+var resRouter = require('./routes/TeslaResource');
 
 var app = express();
 
