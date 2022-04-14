@@ -1,5 +1,5 @@
 // API for our resources 
-exports.api = function(req, res) { 
+module.exports.api = function(req, res) { 
     res.write('['); 
     res.write('{"resource":"tesla", '); 
     res.write('  "verbs":["GET","PUT", "DELETE"] '); 

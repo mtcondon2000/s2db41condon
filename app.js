@@ -4,6 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+//var mydataRouter = require('./routes/mydata');
+var teslasRouter = require('./routes/teslas');
+//var modRouter = require('./routes/addmods');
+var selRouter = require('./routes/selector');
+var resRouter = require('./routes/resource');
+
 const connectionString = process.env.MONGO_CON 
 mongoose = require('mongoose'); 
 mongoose.connect(connectionString,  
@@ -46,14 +54,6 @@ Tesla({tesla_type:"Model 3",  year:'2019', cost: 68000});
 let reseed = true; 
 if (reseed) { recreateDB();} 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-//var mydataRouter = require('./routes/mydata');
-var teslasRouter = require('./routes/teslas');
-//var modRouter = require('./routes/addmods');
-var selRouter = require('./routes/selector');
-var resRouter = require('./routes/reource');
-
 var app = express();
 
 // view engine setup
@@ -66,7 +66,7 @@ app.use(express.json());
 app.use('/teslas', teslasRouter);
 //app.use('/addmods', modRouter);
 app.use('/selector', selRouter);
-app.use('./resource', resRouter);
+app.use('/resource', resRouter);
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
