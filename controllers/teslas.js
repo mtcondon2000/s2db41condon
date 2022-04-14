@@ -55,10 +55,10 @@ exports.tesla_update_put = async function(req, res) {
             // Do updates of properties 
             if(req.body.tesla_type)  
                    toUpdate.tesla_type = req.body.tesla_type; 
-            if(req.body.cost) toUpdate.year = req.body.year; 
-            if(req.body.size) toUpdate.cost = req.body.cost; 
+            if(req.body.year) toUpdate.year = req.body.year; 
+            if(req.body.cost) toUpdate.cost = req.body.cost; 
             let result = await toUpdate.save(); 
-            console.log("Sucess " + result) 
+            console.log("Success " + result) 
             res.send(result) 
         } catch (err) { 
             res.status(500) 
