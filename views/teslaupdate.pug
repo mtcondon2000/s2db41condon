@@ -1,18 +1,25 @@
-extends layout 
- 
 block content 
   h1= title 
  
-  form(id='TeslaForm', action="/resource/teslas", method="POST") 
+  - let teslaid = toShow._id 
+  - let tesla_type = toShow.tesla_type 
+  - let teslacost = toShow.cost 
+  - let teslasize = toShow.size 
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{teslaid} 
+  - let actionid = "/resource/teslas/" + teslaid 
+  form(id='TeslaForm', action= actionid, method="PUT") 
     div.form-group 
-        label.teslaAttr(for='tesla_type') Tesla type 
-        input#tesla_type(type='text', name='tesla_type') 
+        label.teslaAttr(for='tesla_type') Tesla  type 
+        input#tesla_type(type='text', name='tesla_type', value= tesla_type ) 
     div.form-group 
         label.teslaAttr(for='year') Tesla year 
-        input#year(type='number', name='year') 
+        input#size(type='number', name='year', value= teslasize ) 
     div.form-group 
         label.teslaAttr(for='cost') Tesla cost 
-        input#cost(type='text', name='cost') 
+        input#cost(type='text', name='cost', value= teslacost ) 
     input(type="submit") 
  
   script. 
@@ -20,15 +27,15 @@ block content
       event.preventDefault(); 
       // TODO do something here to show user that form is being submitted 
       fetch(event.target.action, { 
-        method: 'POST', 
+        method: 'PUT', 
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
       }).then((resp) => { 
         return resp.json(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
-        alert("Save succeded") 
+        alert("Update succeeded") 
         // TODO handle body 
       }).catch((error) => { 
         // TODO handle error 
-        alert("Save failed " + error ) 
+        alert("Update failed " + error ) 
       }); 
     }); 

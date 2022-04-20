@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let teslaid = toShow._id 
+    - let tesla_type = toShow.tesla_type 
+    - let teslacost = toShow.year 
+    - let teslasize = toShow.cost 
+    - let actionid = "/resource/teslas/" + teslaid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='teslaAttr mr-3') Tesla  ID is: 
+        div #{teslaid} 
+      div.row 
+        div(class='teslaAttr mr-3') Tesla Type is: 
+        div #{tesla_type} 
+      div.row 
+        div(class='teslaAttr mr-3') Tesla Year is: 
+        div #{teslasize} 
+      div.row 
+        div(class='teslaAttr mr-3') Tesla Cost is: 
+        div #{teslacost} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the costume collection 
+      window.location.href='/' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE' 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/teslas' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 
