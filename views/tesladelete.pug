@@ -21,7 +21,7 @@ block content
         div #{tesla_type} 
       div.row 
         div(class='teslaAttr mr-3') Tesla Year is: 
-        div #{teslasize} 
+        div #{teslayear} 
       div.row 
         div(class='teslaAttr mr-3') Tesla Cost is: 
         div #{teslacost} 
@@ -43,7 +43,7 @@ block content
       }).then((resp) => { 
         return resp.json(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
-        alert("Delete succeded") 
+        alert("Delete succeeded") 
         window.location.href='/teslas' 
         // TODO handle body 
       }).catch((error) => { 
