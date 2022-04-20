@@ -26,5 +26,8 @@ router.get('/teslas/:id', tesla_controller.tesla_detail);
  
 // GET request for list of all Costume items. 
 router.get('/teslas', tesla_controller.tesla_list); 
+
+router.get('/detail', tesla_controller.tesla_view_one_Page);
  
+router.get('/create', tesla_controller.tesla_create_Page); 
 module.exports = router; 

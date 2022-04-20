@@ -28,8 +28,8 @@ exports.tesla_create_post = async function(req, res) {
     console.log(req.body) 
     let document = new Tesla();
     document.tesla_type = req.body.tesla_type; 
+    document.year = req.body.year; 
     document.cost = req.body.cost; 
-    document.size = req.body.size; 
     try{ 
         let result = await document.save(); 
         res.send(result); 
@@ -42,9 +42,16 @@ exports.tesla_create_post = async function(req, res) {
  
 
 // Handle Costume delete form on DELETE. 
-exports.tesla_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Costume delete DELETE ' + req.params.id); 
-}; 
+exports.tesla_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Tesla.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } }; 
  
 // Handle Costume update form on PUT. 
 exports.tesla_update_put = async function(req, res) { 
@@ -76,4 +83,28 @@ exports.tesla_view_all_Page = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
+}; 
+
+exports.tesla_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Tesla.findById( req.query.id) 
+        res.render('tesladetail',  
+{ title: 'Tesla Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+
+exports.tesla_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('teslacreate', { title: 'Tesla Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
 }; 

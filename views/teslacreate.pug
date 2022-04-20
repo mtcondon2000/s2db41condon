@@ -1,0 +1,34 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  form(id='TeslaForm', action="/resource/teslas", method="POST") 
+    div.form-group 
+        label.teslaAttr(for='tesla_type') Tesla type 
+        input#tesla_type(type='text', name='tesla_type') 
+    div.form-group 
+        label.teslaAttr(for='size') Tesla year 
+        input#year(type='text', name='year') 
+    div.form-group 
+        label.teslaAttr(for='cost') Tesla cost 
+        input#cost(type='number', name='cost') 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['TeslaForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 

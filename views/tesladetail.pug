@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let teslaid = toShow._id 
+  - let tesla_type = toShow.tesla_type 
+  - let teslacost = toShow.cost 
+  - let teslasize = toShow.size 
+  div 
+    div.row 
+      div(class='teslaAttr mr-3') Tesla ID is: 
+      div #{teslaid} 
+    div.row 
+      div(class='teslaAttr mr-3') Tesla Type is: 
+      div #{tesla_type} 
+    div.row 
+      div(class='teslaAttr mr-3') Tesla Size is: 
+      div #{teslasize} 
+    div.row 
+      div(class='teslaAttr mr-3') Tesla Cost is: 
+      div #{teslacost} 
