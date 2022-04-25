@@ -2,13 +2,21 @@ extends layout
  
 block content 
   h1= title 
-  - let items = results; 
+  - let items = results;
+  - let createDestination = `dispatch(\"/teslas/create\")`
+  button.btn(class="btn-primary ml-1", onclick= createDestination) Create
   div(class="container-fluid") 
     div(class="row m-1") 
       each item in items  
         - let destination = `dispatch(\"/teslas/update?id=${item._id}\")` 
+        - let detailDestination = `dispatch(\"/teslas/detail?id=${item._id}\")`
+        - let deleteDestination = `dispatch(\"/teslas/delete?id=${item._id}\")`
+
         div(class="row-sm-2", class="m-1") Item #{item.tesla_type}(#{item.year}) is #{item.cost} 
           button.btn( class="btn-primary ml-1", onclick= destination) Update 
+          button.btn( class="btn-primary ml-1", onclick= detailDestination) Detail 
+          button.btn( class="btn-primary ml-1", onclick= deleteDestination) Delete
+
 
   script. 
     function dispatch(path){ 
