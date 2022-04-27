@@ -5,11 +5,10 @@ const secured = (req, res, next) => {
     if (req.user){ 
       return next(); 
     } 
-    console.log('Session is' + req.session);
-    req.session.returnTo = req.originalUrl; 
+    //console.log('Session is' + req.session);
     alert('Please login');
+    req.session.returnTo = req.originalUrl; 
     res.redirect("/login"); 
-    
   } 
 
 /* GET home page. */
