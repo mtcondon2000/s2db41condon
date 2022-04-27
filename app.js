@@ -76,20 +76,18 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
-app.use(express.json());
-//app.use('/mydata', mydataRouter);
-app.use('/teslas', teslasRouter);
-//app.use('/addmods', modRouter);
-app.use('/selector', selRouter);
-app.use('/resource', resRouter);
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(require('express-session')({ 
   secret: 'keyboard cat', 
   resave: false, 
   saveUninitialized: false 
-})); 
+}));
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+ 
+
 app.use(passport.initialize()); 
 app.use(passport.session()); 
 
@@ -97,6 +95,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+//app.use('/mydata', mydataRouter);
+app.use('/teslas', teslasRouter);
+//app.use('/addmods', modRouter);
+app.use('/selector', selRouter);
+app.use('/resource', resRouter);
 
 // passport config 
 // Use the existing connection 
