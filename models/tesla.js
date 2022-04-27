@@ -3,9 +3,7 @@ const teslaSchema = mongoose.Schema({
     tesla_type: String,
     year: String,
     cost: {
-        type: Number,
-        min: [30000, 'Price too low'],
-        max: 100000
+        type: Number, min: 30000, max: 100000
     }
 });
 
