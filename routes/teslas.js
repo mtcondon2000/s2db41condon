@@ -6,7 +6,7 @@ const secured = (req, res, next) => {
       return next(); 
     } 
     //console.log('Session is' + req.session);
-    alert('Please login');
+    //alert('Please login');
     req.session.returnTo = req.originalUrl; 
     res.redirect("/login"); 
   } 
